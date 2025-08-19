@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vasil's Academy - Sociology & Political Science Tuition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            position: relative;
+        }
+        /* Background Image with Opacity */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('http://googleusercontent.com/file_content/1');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 0.1; /* Adjust opacity here */
+            z-index: -1;
+        }
+        .control-group { transition: all 0.3s ease-in-out; border-left: 4px solid transparent; }
+        .control-group:focus-within { border-left-color: #3b82f6; }
+        .paper-item:hover { background-color: #f0f9ff; }
+        .modal.hidden { display: none; }
+        .testimonial-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .testimonial-quote { font-style: italic; color: #4b5563; border-left: 3px solid #3b82f6; padding-left: 1rem; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-6xl">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="flex justify-center items-center gap-4">
+                <div class="h-20 w-20 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-md border-2 border-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">Vasil's Academy</h1>
+                    <p class="text-md text-gray-600 mt-1">Sociology & Political Science for Calicut, SNGOU, and IGNOU</p>
+                </div>
+            </div>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Controls & Paper Selection -->
+            <div class="lg:col-span-2 bg-white/95 p-6 rounded-xl shadow-lg backdrop-blur-sm">
+                <h2 class="text-2xl font-semibold mb-6 border-b pb-4">1. Enter Your Details</h2>
+                <div class="mb-6 bg-gray-50 p-4 rounded-lg control-group">
+                    <label for="studentName" class="block text-lg font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="studentName" name="studentName" class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your full name">
+                </div>
+                <h2 class="text-2xl font-semibold mb-6 border-b pb-4">2. Select Your Course</h2>
+                <div id="university-selection" class="mb-6 bg-gray-50 p-4 rounded-lg control-group">
+                    <label class="block text-lg font-medium text-gray-700 mb-2">Select University</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="university" value="calicut" class="form-radio h-5 w-5 text-blue-600" checked>
+                            <span class="text-gray-700">Calicut University</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="university" value="sngou" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="text-gray-700">Sreenarayana Guru Open University</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="university" value="ignou" class="form-radio h-5 w-5 text-blue-600">
+                            <span class="text-gray-700">IGNOU</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                    <div id="level-selection" class="bg-gray-50 p-4 rounded-lg control-group">
+                        <label class="block text-lg font-medium text-gray-700 mb-2">Course Level</label>
+                        <div class="flex flex-col space-y-2">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="level" value="ug" class="form-radio h-5 w-5 text-blue-600" checked>
+                                <span class="text-gray-700">Undergraduate (UG)</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="level" value="pg" class="form-radio h-5 w-5 text-blue-600">
+                                <span class="text-gray-700">Postgraduate (PG)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="subject-selection" class="bg-gray-50 p-4 rounded-lg control-group">
+                        <label class="block text-lg font-medium text-gray-700 mb-2">Subjects (Pick multiple)</label>
+                        <div class="flex flex-col space-y-2">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" name="subjects" value="sociology" class="form-checkbox h-5 w-5 text-blue-600 subject-checkbox" checked>
+                                <span class="text-gray-700">Sociology</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" name="subjects" value="political_science" class="form-checkbox h-5 w-5 text-blue-600 subject-checkbox">
+                                <span class="text-gray-700">Political Science</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4 border-b pb-4">3. Select Your Papers</h2>
+                    <div id="paper-list" class="space-y-3 max-h-96 overflow-y-auto pr-2"></div>
+                    <p id="no-papers-message" class="text-gray-500 hidden mt-4">No papers available for the selected criteria.</p>
+                </div>
+            </div>
+            <!-- Right Column: Cart & Payment -->
+            <div class="lg:col-span-1">
+                <div class="bg-white/95 p-6 rounded-xl shadow-lg sticky top-8 backdrop-blur-sm">
+                    <h2 class="text-2xl font-semibold mb-4 border-b pb-4">Your Selections</h2>
+                    <div id="cart-items" class="mb-4 min-h-[100px]">
+                        <p id="empty-cart-message" class="text-gray-500">Select papers to see them here.</p>
+                    </div>
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-lg font-medium">Total Papers:</span>
+                            <span id="total-papers" class="text-lg font-bold">0</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl font-bold text-blue-600">
+                            <span>Total Amount:</span>
+                            <span id="total-amount">₹0</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button id="proceed-to-pay" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-transform transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none" disabled>
+                            Proceed to Pay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="mt-16">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">What Our Students Say</h2>
+            <div id="testimonial-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+    </div>
+    <div id="paymentModal" class="modal fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-md text-center transform scale-95 modal-content">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Complete Your Payment</h2>
+            <p class="text-gray-600 mb-4">Scan the QR code below with any UPI app.</p>
+            <div id="qrcode" class="flex justify-center items-center my-6 p-4 border-4 border-gray-200 rounded-lg bg-white w-48 h-48 mx-auto"></div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+                <p class="text-lg text-gray-700">Amount to Pay:</p>
+                <p id="modal-amount" class="text-4xl font-extrabold text-blue-600">₹0</p>
+            </div>
+            <button id="closeModalBtn" class="mt-8 w-full bg-gray-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-gray-700">Close</button>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const PAPER_COST = 250;
+        const UPI_ID = 'vasilck313@okicici';
+        const RECIPIENT_NAME = "Vasil's Academy";
+        const syllabus = {
+            "calicut": {
+                "ug": { "sociology": ["Invitation to Sociology", "Indian Society: Structure and Change", "Classical Sociological Tradition", "Research Methodology", "Gender and Sexuality", "Environmental Sociology", "Society and Migration", "Sociology of Development"], "political_science": ["Introduction to Political Science", "Indian Constitution", "Comparative Politics", "Public Administration", "International Relations", "Political Theory: Liberal Tradition", "Political Ideas in Modern India", "Kerala: Political Process and Development"] },
+                "pg": { "sociology": ["Foundations of Sociological Theory", "Research Methodology of Sociology", "Sociology of Indian Society", "Rural and Tribal Societies in India", "Schools of Sociological Theory", "Urban Sociology", "Gender Studies", "Sociology of Development: Themes and Perspectives", "Environmental Sociology", "Current Debates in Social Theory", "Economic Sociology", "Kerala Society: Structure and Change"], "political_science": ["Modern Political Analysis and Political Sociology", "Modern Indian Social and Political Thought", "Indian Government and Politics", "Theories and Concepts of Public Administration", "Comparative Politics", "Political Theory: Liberal Tradition", "Issues in Indian Politics", "Theories and Concepts of International Politics", "Research Methodology", "Political Theory: Marxian Tradition", "Human Rights in India", "India's Foreign Policy"] }
+            },
+            "sngou": {
+                "ug": { "sociology": ["Introduction to Sociology", "Sociology in India", "Classical Sociological Thinkers", "Society in India", "Population Studies", "Environmental Sociology", "Gender Studies", "Economy and Society", "Sociology of Development", "Rural Sociology", "Urban Sociology"], "political_science": ["Introduction to Political Theory", "Indian Government and Politics", "Comparative Government and Politics", "Understanding Political Theory", "Introduction to International Relations", "Indian Political Thought", "Public Policy and Administration in India", "Global Politics"] },
+                "pg": { "sociology": ["Sociology of Rural Society", "Rural Social System", "Dynamics of Directed Change in Rural India", "Peasant Movements and Agrarian Unrest", "Urban Sociology", "Urban Ecology", "Growth of Cities", "Urban problems", "Town Planning"], "political_science": ["Advanced Political Theory", "Indian Political System: Processes and Structures", "Comparative Political Analysis", "Theories of International Relations", "Public Policy and Governance", "Research Methods in Political Science"] }
+            },
+            "ignou": {
+                "ug": { "sociology": ["Introduction to Sociology - I", "Sociology of India - I", "Introduction to Sociology - II", "Sociology of India - II", "Political Sociology", "Sociology of Religion", "Sociology of Gender", "Economic Sociology", "Sociology of Kinship", "Social Stratification", "Sociological Thinkers - I", "Sociological Thinkers - II"], "political_science": ["Understanding Political Theory", "Constitutional Development and Democracy in India", "Political Theory-Concepts and Debates", "Political Process in India", "Introduction to Comparative Govt and Politics", "Perspectives on Public Administration", "Perspectives on International Relations", "Global Politics", "Classical Political Philosophy", "Indian Political Thought-I"] },
+                "pg": { "sociology": ["Sociological Theories and Concepts", "Research Methods and Methodologies", "Sociology of Development", "Sociology in India", "Sociology of Education", "Diaspora and Transnational Communities", "Sociology of Religion", "Urban Sociology", "India: Democracy and Development"], "political_science": ["Political Theory", "International Relations: Theory and Problems", "India: Democracy and Development", "Comparative Politics: Issues and Trends", "Western Political Thought", "Social Movements and Politics in India", "India and the World", "State Politics in India"] }
+            }
+        };
+        const testimonials = [
+            { name: 'Fouzia Shemeer', text: 'Alhamdulillah... Sir.. I finally got my degree. ... Because of you, I was able to pass with such high marks.' },
+            { name: 'Sakir Shabna', text: 'Hi sir, due to personal problems I initially thought I would have to skip my 6th sem exam... When my problems were resolved, I had no time left to study.' },
+            { name: 'Razeena', text: 'When the exam results came, the first thing that came to my mind was you, sir... I have graduated... I will never forget you in my future life.' },
+            { name: 'Shabna K', text: 'Thank you sir.. I started studying from your classes just 2 days before the exam. ... I was able to learn it quickly.' },
+            { name: 'Nusla', text: 'Hello sir, I passed. I am very happy... I passed all the semesters only because of your classes. I was working at a school while pursuing my degree.' },
+            { name: 'Sahla', text: 'Sir, I passed the degree... I passed everything just with your classes.. I even passed the supplementary papers I was expecting.. Thank you so much sir.' },
+            { name: 'AluRafi', text: 'Thanks a lot... The reason for my success in all the exams so far is your class... Thank you sir. God bless you.' }
+        ];
+
+        const studentNameInput = document.getElementById('studentName');
+        const paperListContainer = document.getElementById('paper-list');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalPapersEl = document.getElementById('total-papers');
+        const totalAmountEl = document.getElementById('total-amount');
+        const proceedButton = document.getElementById('proceed-to-pay');
+        const paymentModal = document.getElementById('paymentModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonial-container');
+            container.innerHTML = '';
+            testimonials.forEach(t => {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card bg-white/95 p-6 rounded-xl shadow-lg backdrop-blur-sm';
+                card.innerHTML = `
+                    <div><p class="testimonial-quote mb-4">"${t.text}"</p></div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-right mt-auto">- ${t.name}</h3>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function getSelections() {
+            const university = document.querySelector('input[name="university"]:checked').value;
+            const level = document.querySelector('input[name="level"]:checked').value;
+            const subjectNodes = document.querySelectorAll('input[name="subjects"]:checked');
+            const subjects = Array.from(subjectNodes).map(input => input.value);
+            return { university, level, subjects };
+        }
+
+        function updatePaperList() {
+            const { university, level, subjects } = getSelections();
+            let papers = [];
+            subjects.forEach(subject => {
+                const paperArr = syllabus[university]?.[level]?.[subject] || [];
+                paperArr.forEach(p => papers.push({ subject, title: p }));
+            });
+            paperListContainer.innerHTML = '';
+
+            const noPapersMessage = document.getElementById('no-papers-message');
+            if (papers.length > 0) {
+                noPapersMessage.classList.add('hidden');
+                papers.forEach((paper, index) => {
+                    const id = `${university}-${level}-${paper.subject}-${index}`;
+                    const listItem = document.createElement('label');
+                    listItem.htmlFor = id;
+                    listItem.className = 'paper-item flex items-center p-3 bg-white border rounded-lg cursor-pointer transition-all duration-200 hover:border-blue-500 hover:shadow-sm';
+                    listItem.innerHTML = `
+                        <input type="checkbox" id="${id}" value="${paper.title}" class="form-checkbox h-5 w-5 text-blue-600 rounded mr-4 paper-checkbox">
+                        <span class="text-gray-800">${paper.title} <span class="text-xs text-blue-400">(${paper.subject.replace("_", " ")})</span></span>
+                    `;
+                    paperListContainer.appendChild(listItem);
+                });
+            } else {
+                noPapersMessage.classList.remove('hidden');
+            }
+            // *** CRITICAL FIX: Re-bind events to the new checkboxes ***
+            paperListContainer.querySelectorAll('.paper-checkbox').forEach(cb => cb.addEventListener('change', updateCart));
+            updateCart();
+        }
+
+        function updateCart() {
+            const selectedPapers = document.querySelectorAll('.paper-checkbox:checked');
+            const totalPapers = selectedPapers.length;
+            const totalAmount = totalPapers * PAPER_COST;
+            const studentName = studentNameInput.value.trim();
+
+            totalPapersEl.textContent = totalPapers;
+            totalAmountEl.textContent = `₹${totalAmount}`;
+
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            cartItemsContainer.innerHTML = '';
+            if (totalPapers > 0) {
+                // Ensure empty message is not in the cart if items exist
+                if(cartItemsContainer.contains(emptyCartMessage)) {
+                    cartItemsContainer.removeChild(emptyCartMessage);
+                }
+                const ul = document.createElement('ul');
+                ul.className = 'list-disc list-inside text-gray-700 space-y-1';
+                selectedPapers.forEach(paper => {
+                    const li = document.createElement('li');
+                    li.textContent = paper.value;
+                    ul.appendChild(li);
+                });
+                cartItemsContainer.appendChild(ul);
+            } else {
+                cartItemsContainer.innerHTML = '<p id="empty-cart-message" class="text-gray-500">Select papers to see them here.</p>';
+            }
+            proceedButton.disabled = !(totalPapers > 0 && studentName !== "");
+        }
+
+        // --- EVENT LISTENERS ---
+        document.querySelectorAll('input[name="university"], input[name="level"], .subject-checkbox').forEach(input => {
+            input.addEventListener('change', updatePaperList);
+        });
+        
+        studentNameInput.addEventListener('input', updateCart);
+
+        proceedButton.addEventListener('click', () => {
+            if (proceedButton.disabled) return;
+
+            const qrCodeContainer = document.getElementById('qrcode');
+            const totalAmount = document.querySelectorAll('.paper-checkbox:checked').length * PAPER_COST;
+            const studentName = studentNameInput.value.trim();
+            
+            const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(RECIPIENT_NAME)}&am=${totalAmount}.00&cu=INR&tn=Payment for ${studentName}`;
+            qrCodeContainer.innerHTML = '';
+            new QRCode(qrCodeContainer, { text: upiUrl, width: 160, height: 160 });
+            document.getElementById('modal-amount').textContent = `₹${totalAmount}`;
+            paymentModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            paymentModal.classList.add('hidden');
+        });
+        paymentModal.addEventListener('click', (e) => {
+            if (e.target === paymentModal) {
+                paymentModal.classList.add('hidden');
+            }
+        });
+
+        // --- INITIALIZATION ---
+        renderTestimonials();
+        updatePaperList();
+    });
+    </script>
+</body>
+</html>
